@@ -1,0 +1,106 @@
+PKCS10 DEFINITIONS IMPLICIT TAGS ::=
+
+BEGIN
+
+-- PKCS #10 ASN.1 --
+-- All IOSET constraints removed, just plain old-school ASN.1 :) --
+
+-- X.500 --
+
+Name ::= CHOICE {
+    -- only one possibility for now --
+    rdnSequence  RDNSequence
+}
+
+RDNSequence ::= SEQUENCE OF RelativeDistinguishedName
+
+RelativeDistinguishedName ::= SET SIZE (1..MAX) OF AttributeTypeAndValue
+
+AttributeTypeAndValue ::= SEQUENCE {
+    type     AttributeType,
+    value    AttributeValue
+}
+
+-- attribute data types
+-- Attribute ::= SEQUENCE {
+-- type    OBJECT IDENTIFIER,
+-- values  AttributeSetValue
+-- }
+
+AttributeType ::= OBJECT IDENTIFIER
+
+AttributeValue ::= ANY -- DEFINED BY AttributeType
+
+Attributes ::= SET OF Attribute
+
+Attribute ::= SEQUENCE {
+    type    OBJECT IDENTIFIER,
+    values  AttributeSetValue
+}
+
+AttributeSetValue ::= SET OF ANY
+
+-- Extensions from PKCS#9 (?) : From: http://www.doc.ic.ac.uk/~rn710/Installs/otp_src_17.0/lib/public_key/asn1/OTP-PKIX.asn1
+
+--extensionRequest ATTRIBUTE ::= {
+--    WITH SYNTAX ExtensionRequest
+--    SINGLE VALUE TRUE
+--    ID pkcs-9-at-extensionRequest
+--}
+
+ExtensionRequest ::= Extensions
+
+Extensions ::= SEQUENCE SIZE (1..MAX) OF Extension
+
+Extension ::= SEQUENCE  {
+    extnID      OBJECT IDENTIFIER,
+    critical    BOOLEAN DEFAULT FALSE,
+    extnValue   ANY -- encode as OCTET STRING
+}
+
+id-ce-subjectAltName OBJECT IDENTIFIER ::=  { 2 5 29 17 }
+
+SubjectAltName ::= GeneralNames
+
+GeneralNames ::= SEQUENCE SIZE (1..MAX) OF GeneralName
+
+GeneralName ::= CHOICE {
+    rfc822Name  [1] IA5String
+}
+
+id-ce-basicConstraints OBJECT IDENTIFIER ::=  { 2 5 29 19 }
+
+BasicConstraints ::= SEQUENCE {
+    cA                  BOOLEAN DEFAULT FALSE,
+    pathLenConstraint   INTEGER (0..MAX) OPTIONAL
+}
+
+
+-- PKCS#10 CSR--
+
+
+CertificationRequest ::= SEQUENCE {
+    certificationRequestInfo    CertificationRequestInfo,
+    signatureAlgorithm          AlgorithmIdentifier,
+    signature                   BIT STRING
+}
+
+CertificationRequestInfo ::= SEQUENCE {
+    version       INTEGER { v1(0) } (v1,...),
+    subject       Name,
+    subjectPKInfo SubjectPublicKeyInfo,
+    attributes    [0] Attributes OPTIONAL
+}
+
+SubjectPublicKeyInfo ::= SEQUENCE {
+    algorithm        AlgorithmIdentifier,
+    subjectPublicKey BIT STRING
+}
+
+AlgorithmIdentifier  ::=  SEQUENCE  {
+    algorithm   OBJECT IDENTIFIER,
+    parameters  ANY DEFINED BY algorithm OPTIONAL
+}
+
+END
+
