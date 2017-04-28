@@ -6,6 +6,8 @@
 //  Copyright © 2015 River2Sea. All rights reserved.
 //
 
+// TODO: Convert to Swift.
+
 #import "HexConverter.h"
 
 @implementation HexConverter
