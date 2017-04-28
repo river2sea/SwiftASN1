@@ -104,7 +104,7 @@ public class DEREncoder {
         self.vlqEncoder = VLQEncoder()
     }
 
-    func encode( value: ASN1Type ) throws {
+    public func encode( value: ASN1Type ) throws {
 
         log( message: "Encoding Top Level ASN1 Value: \(value):" )
 

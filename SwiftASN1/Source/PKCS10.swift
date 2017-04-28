@@ -43,7 +43,11 @@
 import Foundation
 
 
-let ExtensionRequestOID = ObjectIdentifier( string: "1.2.840.113549.1.9.14" )
+public struct PKCS10 {
+    
+    public static let ExtensionRequestOID = ObjectIdentifier( string: "1.2.840.113549.1.9.14" )
+
+}
 
 
 public class Attributes: SetOf {

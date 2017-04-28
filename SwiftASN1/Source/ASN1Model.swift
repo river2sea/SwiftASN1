@@ -26,16 +26,20 @@ public enum ASN1ModelError: Error {
 
 
 public enum TagClass: Int {
+    
     case universal          = 0x00
     case application        = 0x40
     case contextSpecific    = 0x80
     case `private`          = 0xC0
+    
 }
 
 
 public enum EncodingDirective: Int {
+    
     case standard = 0x00
     case octetString = 0x02
+    
 }
 
 
@@ -47,7 +51,8 @@ public class Module: ASN1Container {
     var topLevelValues : [ ASN1Type ] = []
 
     public func calculateLength( tag: Int, dataLength: Int ) -> Int {
-        return 0
+        // TODO: Implement or remove. -rds
+        abort()
     }
 
 }
@@ -479,7 +484,7 @@ public class ASN1TypeVisitor {
 
     fileprivate(set) var level: Int = 0
 
-    func visit( value: ASN1Type, closure : ( String, Int, String ) -> Void ) throws {
+    public func visit( value: ASN1Type, closure : ( String, Int, String ) -> Void ) throws {
 
         let name = String( describing: type( of: value ) )
 
