@@ -131,22 +131,22 @@
 				D72D379A1EB2B6A1004A27DE /* ASN1Decoding.swift */,
 				D72D379B1EB2B6A1004A27DE /* ASN1Encoding.swift */,
 				D72D379C1EB2B6A1004A27DE /* ASN1Model.swift */,
-				D72D379D1EB2B6A1004A27DE /* GenerateSampleCSR.py */,
 				D72D379E1EB2B6A1004A27DE /* HexConverter.h */,
 				D72D379F1EB2B6A1004A27DE /* HexConverter.m */,
 				D72D37A01EB2B6A1004A27DE /* NSData+HexString.swift */,
 				D72D37A11EB2B6A1004A27DE /* NSData+JFRBinaryInspection.h */,
 				D72D37A21EB2B6A1004A27DE /* NSData+JFRBinaryInspection.m */,
+				D72D37A81EB2B6A1004A27DE /* String+PEM.swift */,
+				D72D37AA1EB2B6A1004A27DE /* VLQ.swift */,
 				D72D37A31EB2B6A1004A27DE /* PKCS-10-Complete.asn1 */,
 				D72D37A41EB2B6A1004A27DE /* PKCS10.swift */,
+				D72D37AB1EB2B6A1004A27DE /* X500.swift */,
+				D72D37AC1EB2B6A1004A27DE /* X509.swift */,
 				D72D37A51EB2B6A1004A27DE /* SampleCSR.asn1 */,
 				D72D37A61EB2B6A1004A27DE /* SampleCSR.der */,
 				D72D37A71EB2B6A1004A27DE /* SampleCSR.pem */,
-				D72D37A81EB2B6A1004A27DE /* String+PEM.swift */,
+				D72D379D1EB2B6A1004A27DE /* GenerateSampleCSR.py */,
 				D72D37A91EB2B6A1004A27DE /* ValidateCSR.py */,
-				D72D37AA1EB2B6A1004A27DE /* VLQ.swift */,
-				D72D37AB1EB2B6A1004A27DE /* X500.swift */,
-				D72D37AC1EB2B6A1004A27DE /* X509.swift */,
 			);
 			name = Source;
 			path = SwiftASN1/Source;
@@ -489,6 +489,7 @@
 				D72D37951EB2B596004A27DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D72D37961EB2B596004A27DE /* Build configuration list for PBXNativeTarget "SwiftASN1Tests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +498,7 @@
 				D72D37981EB2B596004A27DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

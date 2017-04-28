@@ -228,9 +228,6 @@ public class ObjectIdentifier: ASN1Type, Hashable {
 
     public var value : [ UInt32 ]
 
-    /*public var hashValue: Int {
-        return
-    }*/
 
     public var hashValue: Int {
 
