@@ -484,6 +484,8 @@ public class ASN1TypeVisitor {
 
     fileprivate(set) var level: Int = 0
 
+    public init() {}
+    
     public func visit( value: ASN1Type, closure : ( String, Int, String ) -> Void ) throws {
 
         let name = String( describing: type( of: value ) )
@@ -592,6 +594,10 @@ public class ASN1TypeVisitor {
 
 
 public class ASN1ValuePrinter: ASN1TypeVisitor {
+
+    public override init() {
+        super.init()
+    }
 
     public func print( value: ASN1Type ) throws {
 
