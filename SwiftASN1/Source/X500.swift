@@ -38,7 +38,7 @@ public class Name: Choice {
 
     public class func createWith( RDNSequence: RDNSequence ) -> Name {
         let result = Name( chosen: RDNSequence )
-        result.registerField( field: MetaField( name: "RDNSequence", value: RDNSequence, tagClass: .universal, tagNumber: -1, optional: false ) )
+        result.registerField( field: MetaField( name: "RDNSequence", value: RDNSequence, tagClass: .universal, tagNumber: -1, isOptional: false ) )
         return result
     }
 

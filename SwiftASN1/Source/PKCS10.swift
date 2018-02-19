@@ -142,13 +142,13 @@ public class GeneralName: Choice {
 
     public class func createWith( rfc822Name: IA5String ) -> GeneralName {
         let result = GeneralName( chosen: rfc822Name )
-        result.registerField( field: MetaField( name: "rfc822Name", value: rfc822Name, tagClass: .contextSpecific, tagNumber: 1, optional: false ) )
+        result.registerField( field: MetaField( name: "rfc822Name", value: rfc822Name, tagClass: .contextSpecific, tagNumber: 1, isOptional: false ) )
         return result
     }
     
     public class func createWith( dNSName: IA5String ) -> GeneralName {
         let result = GeneralName( chosen: dNSName )
-        result.registerField( field: MetaField( name: "dNSName", value: dNSName, tagClass: .contextSpecific, tagNumber: 2, optional: false ) )
+        result.registerField( field: MetaField( name: "dNSName", value: dNSName, tagClass: .contextSpecific, tagNumber: 2, isOptional: false ) )
         return result
     }
     
@@ -174,7 +174,7 @@ public class AlgorithmIdentifier: Sequence {
     public init( algorithm: ObjectIdentifier, parameters: ASN1Any ) {
         super.init()
         registerField( name: "algorithm", value: algorithm )
-        registerField( name: "parameters", value: parameters, optional: true )
+        registerField( name: "parameters", value: parameters, isOptional: true )
     }
 
 }
@@ -236,7 +236,7 @@ public class CertificationRequestInfo: Sequence {
         registerField( name: "subject", value: Name.createWith( RDNSequence: RDNSequence() ) )
         let algorithmId = AlgorithmIdentifier( algorithm: ObjectIdentifier(), parameters: ASN1Any() )
         registerField( name: "subjectPKInfo", value: SubjectPublicKeyInfo( algorithm: algorithmId, subjectPublicKey: BitString( bytes: [ UInt8 ]() ) ) )
-        registerField( name: "attributes", value: Attributes(), tagClass: .contextSpecific, tagNumber: 0, optional: true )
+        registerField( name: "attributes", value: Attributes(), tagClass: .contextSpecific, tagNumber: 0, isOptional: true )
     }
 
 }

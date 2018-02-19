@@ -1,6 +1,5 @@
 //
-//  DERBuilder.swift
-//  PeaceKeeper
+//  ASN1Encoding.swift
 //
 //  Created by Rowland Smith on 11/11/15.
 //  Copyright © 2015 River2Sea. All rights reserved.
@@ -8,7 +7,7 @@
 
 /* Bit Twiddling Notes
 
-    Clearing A Bit:
+    Clearing a bit:
 
         let clearBit = 31
         tag &= ~( 1 << clearBit )
@@ -18,9 +17,13 @@
 // swiftlint:disable force_cast
 
 import Foundation
+import Log
 
 
-fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
+private let log = Logger()
+
+
+fileprivate func < <T: Comparable>( lhs: T?, rhs: T? ) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l < r
@@ -31,7 +34,8 @@ fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-fileprivate func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
+
+fileprivate func > <T: Comparable>( lhs: T?, rhs: T? ) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l > r
@@ -65,6 +69,7 @@ public protocol ASN1Encoder {
 
 }
 
+
 public enum DEREncoderError: Error {
 
     case unknownTypeError( value : ASN1Type )
@@ -74,17 +79,6 @@ public enum DEREncoderError: Error {
 
 }
 
-/* Why was this ever put here? -rds
-extension Array {
-    subscript(i: UInt) -> Element {
-        get {
-            return self[Int(i)]
-        } set(from) {
-            self[Int(i)] = from
-        }
-    }
-}
-*/
 
 public class DEREncoder {
 
@@ -323,7 +317,7 @@ extension DEREncoder : ASN1Encoder {
 
         for component: UInt32 in components {
             let encoding = vlqEncoder.encode( value: component )
-            buffer.append( encoding, count:encoding.count )
+            buffer.append( encoding, count: encoding.count )
             length += encoding.count
         }
 
@@ -439,6 +433,7 @@ extension DEREncoder : ASN1Encoder {
 
                 default:
                     throw DEREncoderError.unknownTypeError( value: field.value! )
+
             }
 
             implicitTag += 1
@@ -451,6 +446,7 @@ extension DEREncoder : ASN1Encoder {
         try encodeTagAndLength( tagNumber: meta.tagNumber, tagClass: meta.tagClass, length: tmpData.count, constructed: true )
         
         //data.append( tmpData )
+        // TODO: Why is this not a simple data.append( tmpData ) ?
         appendData( other: tmpData )
     }
     
@@ -520,10 +516,11 @@ extension DEREncoder : ASN1Encoder {
     public func encodeChoice( value: Choice, meta: ASN1Meta ) throws {
 
         if let chosen = value.chosen {
-            // CRASH: The meta data isn't being passd on here. -rds
+            // CRASH: The meta data isn't being passed on here. -rds
             try encode( value: chosen )
         } else {
             // The current design does not allow an empty CHOICE. -rds
+            // TODO: Does CMS require a CHOICE that can contain an OPTIONAL element?
         }
 
     }

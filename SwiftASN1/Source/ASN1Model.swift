@@ -1,6 +1,5 @@
 //
-//  ASN1.swift
-//  PeaceKeeper
+//  ASN1Model.swift
 //
 //  Created by Rowland Smith on 11/17/15.
 //  Copyright © 2015 River2Sea. All rights reserved.
@@ -42,6 +41,8 @@ public enum EncodingDirective: Int {
     
 }
 
+
+// TODO: Use it or lose it... -rds
 
 public protocol ASN1Container {}
 
@@ -288,10 +289,10 @@ public class MetaField: ASN1Meta {
     public var value: ASN1Type?
     public let optional: Bool
     
-    init( name: String, value: ASN1Type?, tagClass: TagClass = .universal, tagNumber: Int = -1, optional: Bool = false ) {
+    init( name: String, value: ASN1Type?, tagClass: TagClass = .universal, tagNumber: Int = -1, isOptional: Bool = false ) {
         self.name = name
         self.value = value
-        self.optional = optional
+        self.optional = isOptional
         var tag = tagNumber
         if tagNumber == -1 {
             tag = value!.DefaultTag
@@ -356,19 +357,17 @@ public class Sequence: ASN1Type, ASN1Container {
         mutableFields.append( field )
     }
 
-    internal func registerField( name: String, value: ASN1Type?, tagClass: TagClass = .universal, tagNumber: Int = -1, optional: Bool = false ) {
+    internal func registerField( name: String, value: ASN1Type?, tagClass: TagClass = .universal, tagNumber: Int = -1, isOptional: Bool = false ) {
         var tagBase = tagNumber
         if tagBase == -1 {
             tagBase = value!.DefaultTag
         }
-        let field = MetaField( name: name, value: value, tagClass: tagClass, tagNumber: tagBase, optional: optional )
+        let field = MetaField( name: name, value: value, tagClass: tagClass, tagNumber: tagBase, isOptional: isOptional )
         mutableFields.append( field )
     }
 
     internal func getField( name: String ) -> ASN1Type? {
-
         return self.fields.filter { $0.name == name }[ 0 ].value
-
     }
 
 }
@@ -603,7 +602,7 @@ public class ASN1ValuePrinter: ASN1TypeVisitor {
 
         Swift.print( "\n\n" )
 
-        try super.visit( value: value ) { name, level, message in
+        try super.visit( value: value ) { ( name, level, message ) in
 
             var indent = ""
 

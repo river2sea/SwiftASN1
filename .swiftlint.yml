@@ -1,0 +1,15 @@
+included:
+- SwiftASN1
+- Source
+
+excluded:
+- Carthage
+
+disabled_rules:
+- identifier_name
+- force_cast
+- todo
+- vertical_whitespace
+- closing_brace
+
+line_length: 150

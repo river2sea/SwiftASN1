@@ -1,0 +1,1508 @@
+CMSObjectIdentifers {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) oids(1) v2009(1) }
+
+DEFINITIONS EXPLICIT TAGS ::=  BEGIN
+
+-- EXPORTS All --
+
+-- IMPORTS All --
+
+OID ::= OBJECT IDENTIFIER  -- Alias
+
+-- Content types, from RSA PKCS #7 and IETF S/MIME
+
+pkcs7 OID ::= { iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1) pkcs7(7) }
+
+id-data OID ::= { pkcs7  data(1) }
+
+id-signedData OID ::= { pkcs7 signedData(2) }
+
+id-envelopedData OID ::= { pkcs7 envelopedData (3) }
+
+id-digestedData OID ::=  { pkcs7  digestedData(5) }
+
+id-encryptedData OID ::= { pkcs7 encryptedData (6) }
+
+id-namedkeyencryptedData OID ::= { iso(1) member-body(2) us(840)
+x973(10060) types(1) namedKeyEncryptedData(2) }
+
+-- Signcryption object identifiers --
+
+id-signcryptedData OID ::= { iso(1) member-body(2) us(840)
+x973(10060) types(1) signcryptedData(3)}
+
+-- The signcryption-manifest arc is the root identifier for all --
+-- SigncryptedData manifest types definied in this standard.    --
+
+signcryption-manifest OID ::= { id-signcryptedData manifest(1) }
+
+-- A value of xPath identifies the XPathSet manifest type. --
+
+xPath OID ::= { signcryption-manifest xPath(0) }
+
+pkcs9 OID ::= { iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1) pkcs9(9) }
+
+smime OID ::= { pkcs9 smime(16)  }
+
+id-ct-authData OID ::= { smime ct(1) 2 }
+
+-- Signed attributes, from RSA PKCS #9, IETF S/MIME, and X9.73 --
+
+id-contentType OID ::= { pkcs9 contentType(3) }
+
+id-messageDigest OID ::= { pkcs9  messageDigest(4) }
+
+-- Authenticated attribute, from IETF S/MIME --
+
+id-macValue OID ::= { smime aa(2) macValue(8) }
+
+-- CKM key management object identifiers --
+
+id-ckm-recip-info OID ::= { iso member-body(2) us(840) x973(10060) km(2) 1 }
+
+id-ckm-recip-info2 OID ::= { iso member-body(2) us(840) x973(10060) km(2) 2}
+
+id-ckm-algorithms OID ::= { iso member-body(2) us(840) x973(10060) algorithms(3) }
+
+id-ckm-symmetric OID ::= { id-ckm-algorithms symmetric(1) }
+
+id-ckm-key-transport OID ::= { id-ckm-algorithms key-transport(2) }
+
+id-ckm-key-agree-multiple-encrypt OID ::= {
+id-ckm-algorithms key-agree-multiple-encrypt(3) }
+
+id-ckm-key-agree-hash OID ::= { id-ckm-algorithms key-agree-hash(4) }
+
+id-ckm-header OID ::= { iso member-body(2) us(840) x973(10060) header(4) }
+
+ckm-CMS OID ::= {
+joint-iso-itu-t(2) internationalRA(23) set(42) vendors(9) griffin(10)
+business(3) tecsec(0) cms(2) header(2) }
+
+id-Ivec            OID ::= { ckm-CMS 1 }
+id-Secryptm        OID ::= { ckm-CMS 2 }
+id-Filelength      OID ::= { ckm-CMS 3 }
+id-Filehash        OID ::= { ckm-CMS 4 }
+id-Filename        OID ::= { ckm-CMS 5 }
+id-Domainlist      OID ::= { ckm-CMS 6 }
+id-Accessgrouplist OID ::= { ckm-CMS 7 }
+id-Issuer          OID ::= { ckm-CMS 8 }
+id-Credentiallist  OID ::= { ckm-CMS 9 }
+id-SignKey         OID ::= { ckm-CMS 10 }
+id-KeyUsage        OID ::= { ckm-CMS 11 }
+id-BitSpray        OID ::= { ckm-CMS 12 }
+id-BitSprayMeta    OID ::= { ckm-CMS 12 1 }
+id-BitSprayShares  OID ::= { ckm-CMS 12 2 }
+id-FavoriteName    OID ::= { ckm-CMS 13 }
+id-DataSignature   OID ::= { ckm-CMS 14 }
+id-BlockSize       OID ::= { ckm-CMS 15 }
+id-DataFormat      OID ::= { ckm-CMS 16 }
+
+-- Tokenization object identifiers --
+
+id-tokenization-manifest OID ::= { iso(1) identified-organization(3) tc68(133)
+country(16) x9(840) x9Standards(9) x9-73(73) tokenization(3) }
+
+id-tokenizedParts OID ::= { id-tokenization-manifest tokenizedParts(0) }
+
+id-XPathTokensSet OID ::= { id-tokenization-manifest xPathTokensSet(1) }
+
+-- Signcryption processing mode object identifiers --
+
+signcryption OID ::= { iso(1) identified-organization(3) tc68(133)
+country(16) x9(840) x9Standards(9) x9-73(73) signcryption(4) }
+
+signcryption-mode OID ::= { signcryption modes(1) }
+
+signcrypted-content OID ::= { signcryption-mode content(1) }
+
+signcrypted-attributes OID ::= { signcryption-mode attributes(2) }
+
+signcrypted-components OID ::= { signcryption-mode components(3) }
+
+signcrypted-envelope OID ::= { signcryption-mode enveloped(4) }
+
+-- Signcryption object identifiers --
+
+id-signcryptedParts OID ::= { signcryption-manifest signcryptedParts(0) }
+
+id-XPathSigncryptionSet OID ::= { signcryption-manifest xPathSigncryptionSet(1) }
+
+-- X9.73 attribute object identifiers --
+
+id-cms-attributes OID ::= { iso(1) identified-organization(3) tc68(133)
+country(16) x9(840) x9Standards(9) x9-73(73) attributes(1) }
+
+xmlMarkup OID ::= { id-cms-attributes xml(0) }
+
+id-cms-SAML OID ::= { xmlMarkup saml(1) }
+
+id-cms-XKMS OID ::= { xmlMarkup xkms(2) }
+
+id-messageComponents OID ::= { xmlMarkup mc(3) }
+
+-- X9.73 XML namespace prefix values --
+
+id-cms-namespaces OID ::= { iso(1) identified-organization(3) tc68(133)
+country(16) x9(840) x9Standards(9) x9-73(73) namespaces(2) }
+
+cms OID ::= { iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) namespaces(2) cms(0) }
+
+-- RFC 3211 password-based encryption --
+
+id-alg-PWRI-KEK OBJECT IDENTIFIER ::= { iso(1) member-body(2)
+us(840) rsadsi(113549) pkcs(1) pkcs-9(9) smime(16) alg(3) 9 }
+
+-- Database Bncryption Key Management --
+
+dbEKM OID ::= {
+joint-iso-itu-t(2) country(16) us(840) organization(1) wfbna(114171)
+lobs(4) eisArchitecture(1) techniques(2) dbEKM(0)
+}
+
+id-SimpleString OID ::= { dbEKM ss(1) }
+
+id-UniqueIdentifier OID ::= { dbEKM uid(2) }
+
+id-dbekm-recip-info OID ::= { iso member-body(2) us(840) x973(10060) km(2) 3 }
+
+END  -- CMSObjectIdentifiers --
+CMS schema specification
+
+CryptographicMessageSyntax {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) cms(2) v2009(1) }
+
+DEFINITIONS IMPLICIT TAGS ::= BEGIN
+
+-- EXPORTS All --
+
+IMPORTS
+
+-- Directory Information Framework (X.501) --
+
+Name
+FROM InformationFramework {
+joint-iso-itu-t ds(5) modules(1) informationFramework(1) 3 }
+
+-- X9.73 CMS Object Identifiers --
+
+id-signedData, id-envelopedData, id-data, id-digestedData,
+id-ct-authData, id-encryptedData, id-contentType, id-messageDigest,
+id-macValue, id-namedkeyencryptedData, id-signcryptedData, id-cms-SAML,
+id-cms-XKMS, id-messageComponents
+FROM CMSObjectIdentifers {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) oids(1) v2009(1) }
+
+-- X9.73 CMS Signcrypted Data --
+
+SigncryptedData
+FROM CMS-SigncryptedData {
+iso(1) identified-organization(3) tc68(133) country(16)
+x9(840) x9Standards(9) x9-73(73) module(0) signcrypt(8) }
+
+-- X9.73 Database Encryption Key Management --
+
+DB-Encryption-Key-Management
+FROM DbEKM {
+iso(1) identified-organization(3) tc68(133) country(16)
+x9(840) x9Standards(9) x9-73(73) module(0) dbekm(9) }
+
+-- X9.73 Constructive Key Management --
+
+Constructive-Key-Management
+FROM ConstructiveKeyManagement {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) ckm(3) v2009(1) };
+
+
+
+ContentInfo ::= SEQUENCE {
+contentType  ContentType,
+content       [0] EXPLICIT
+CONTENTS.&Type({Contents}{@contentType})  OPTIONAL
+}
+
+ContentType ::= CONTENTS.&id({Contents})
+
+CONTENTS ::= TYPE-IDENTIFIER  -- Defined in ISO/IEC 8824-2, Annex A
+
+Contents CONTENTS ::= {
+{ SignedData             IDENTIFIED BY  id-signedData            } |
+{ EnvelopedData          IDENTIFIED BY  id-envelopedData         } |
+{ AuthenticatedData      IDENTIFIED BY  id-ct-authData           } |
+{ DigestedData           IDENTIFIED BY  id-digestedData          } |
+{ EncryptedData          IDENTIFIED BY  id-encryptedData         } |
+{ NamedKeyEncryptedData  IDENTIFIED BY  id-namedkeyencryptedData } |
+{ SigncryptedData        IDENTIFIED BY  id-signcryptedData       } |
+{ Data                   IDENTIFIED BY  id-data                  },
+
+...  -- Expect additional content type objects --
+}
+
+
+EncapsulatedContentInfo ::= SEQUENCE {
+eContentType  CONTENTS.&id({Contents}),
+eContent      [0] EXPLICIT OCTET STRING
+(CONTAINING CONTENTS.&Type
+({Contents}{@eContentType}))OPTIONAL
+}
+
+SignedData ::= SEQUENCE {
+version           CMSVersion,
+digestAlgorithms  DigestAlgorithmIdentifiers,
+encapContentInfo  EncapsulatedContentInfo,
+certificates      [0] Certificates  OPTIONAL,
+crls              [1] CRLs  OPTIONAL,
+signerInfos       SignerInfos
+}
+
+CMSVersion ::= INTEGER { v0(0) } (0..MAX)
+
+DigestAlgorithmIdentifiers ::= SET SIZE(0..MAX) OF DigestAlgorithmIdentifier
+
+DigestAlgorithmIdentifier ::=
+AlgorithmIdentifier {{DigestAlgorithms}}
+
+DigestAlgorithms ALGORITHM ::= {
+
+... -- Expect additional digest algorithm objects  --
+}
+
+Certificates ::= [XER:BASE64] OCTET STRING
+
+CRLs ::= [XER:BASE64] OCTET STRING
+
+Data ::= OCTET STRING
+
+SignerInfos ::= SET SIZE(0..MAX) OF SignerInfo
+
+SignerInfo ::= SEQUENCE {
+version             CMSVersion,
+sid                 SignerIdentifier,
+digestAlgorithm     DigestAlgorithmIdentifier,
+signedAttrs         [0] SignedAttributes  OPTIONAL,
+signatureAlgorithm  SignatureAlgorithmIdentifier,
+signature           SignatureValue,
+unsignedAttrs       [1] UnsignedAttributes  OPTIONAL
+}
+
+SignerIdentifier ::= CHOICE {
+issuerAndSerialNumber  IssuerAndSerialNumber,
+subjectKeyIdentifier   [0] SubjectKeyIdentifier,
+signerHash             [1] SignerHash
+}
+
+IssuerAndSerialNumber ::= SEQUENCE {
+issuer        Name,
+serialNumber  CertificateSerialNumber
+}
+
+CertificateSerialNumber ::= INTEGER
+
+SubjectKeyIdentifier ::= OCTET STRING
+
+SignerHash ::= DigestInfo
+
+DigestInfo ::= SEQUENCE {
+hashAlgorithm  DigestAlgorithmIdentifier,
+digest         Digest
+}
+
+SignatureAlgorithmIdentifier ::=
+AlgorithmIdentifier {{SignatureAlgorithms}}
+
+SignatureAlgorithms ALGORITHM ::= {
+
+...  -- Expect additional signature algorithm objects --
+}
+
+SignatureValue ::= OCTET STRING
+
+SignedAttributes ::= SET SIZE(1..MAX) OF Attribute {{Signed}}
+
+Signed ATTRIBUTE ::= {
+{ WITH SYNTAX ContentType          ID id-contentType        } |
+{ WITH SYNTAX MessageDigest        ID id-messageDigest      } |
+{ WITH SYNTAX MessageComponents    ID id-messageComponents  } |
+{ WITH SYNTAX SAMLvalues           ID id-cms-SAML           } |
+{ WITH SYNTAX XKMSvalues           ID id-cms-XKMS           },
+
+...  -- Expect additional signed attribute objects --
+}
+
+MessageDigest ::= OCTET STRING
+
+MessageComponents ::= SEQUENCE SIZE(1..MAX) OF Component
+
+Component ::= UTF8String
+
+SAMLvalues ::= SEQUENCE SIZE(1..MAX) OF SAMLmarkup
+
+SAMLmarkup ::= UTF8String (CONSTRAINED BY { -- SAML V2.0 subclause 1.3.1 -- })
+
+XKMSvalues ::= SEQUENCE SIZE(1..MAX) OF XKMSmarkup
+
+XKMSmarkup ::= UTF8String
+
+UnsignedAttributes ::= SET SIZE(1..MAX) OF Attribute {{Unsigned}}
+
+Unsigned ATTRIBUTE ::= {
+
+...  -- Expect additional objects --
+}
+
+EnvelopedData ::= SEQUENCE {
+version               CMSVersion,
+originatorInfo        [0] OriginatorInfo  OPTIONAL,
+recipientInfos        RecipientInfos,
+encryptedContentInfo  EncryptedContentInfo,
+unprotectedAttrs      [1] UnprotectedAttributes  OPTIONAL
+}
+
+UnprotectedAttributes ::= SET SIZE(1..MAX) OF Attribute {{Unprotected}}
+
+Unprotected ATTRIBUTE ::= {
+
+...  -- Expect additional unprotected attribute objects --
+}
+
+OriginatorInfo ::= SEQUENCE {
+certs  [0] Certificates  OPTIONAL,
+crls   [1] CRLs  OPTIONAL
+}
+(ALL EXCEPT({ -- none; at least one component is present -- }))
+
+RecipientInfos ::= SET SIZE(1..MAX) OF RecipientInfo
+
+RecipientInfo ::= CHOICE {
+ktri   KeyTransRecipientInfo,
+kari   [1] KeyAgreeRecipientInfo,
+kekri  [2] KEKRecipientInfo,
+pwri   [3] PasswordRecipientInfo,
+ori    [4] OtherRecipientInfo
+}
+
+EncryptedContentInfo ::= SEQUENCE {
+contentType                 ContentType,
+contentEncryptionAlgorithm  ContentEncryptionAlgorithmIdentifier,
+encryptedContent            [0] EncryptedContent  OPTIONAL
+}
+
+ContentEncryptionAlgorithmIdentifier ::=
+AlgorithmIdentifier {{ContentEncryptionAlgorithms}}
+
+ContentEncryptionAlgorithms ALGORITHM ::= {
+
+...  -- Expect additional content encryption algorithm objects --
+}
+
+CFBParameters ::= SEQUENCE {
+aes-IV        AES-IV,
+numberOfBits  NumberOfBits
+}
+
+AES-IV ::= OCTET STRING (SIZE(16))
+
+NumberOfBits ::= INTEGER(1..128)
+
+IV ::= OCTET STRING (SIZE(8))
+
+EncryptedContent ::= OCTET STRING
+
+KeyTransRecipientInfo ::= SEQUENCE {
+version                 CMSVersion,
+rid                     RecipientIdentifier,
+keyEncryptionAlgorithm  KeyEncryptionAlgorithmIdentifier,
+encryptedKey            EncryptedKey
+}
+
+RecipientIdentifier ::= CHOICE {
+issuerAndSerialNumber  IssuerAndSerialNumber,
+subjectKeyIdentifier   [0] SubjectKeyIdentifier,
+signerHash             [1] SignerHash
+}
+
+KeyEncryptionAlgorithmIdentifier ::=
+AlgorithmIdentifier {{KeyEncryptionAlgorithms}}
+
+KeyEncryptionAlgorithms ALGORITHM ::= {
+
+...  -- Expect additional objects --
+}
+
+EncryptedKey ::= OCTET STRING
+
+KeyAgreeRecipientInfo ::= SEQUENCE {
+version                 CMSVersion,
+originator              [0] EXPLICIT OriginatorIdentifierOrKey,
+ukm                     [1] EXPLICIT UserKeyingMaterial  OPTIONAL,
+keyEncryptionAlgorithm  KeyEncryptionAlgorithmIdentifier,
+recipientEncryptedKeys  RecipientEncryptedKeys
+}
+
+OriginatorIdentifierOrKey ::= CHOICE {
+issuerAndSerialNumber  IssuerAndSerialNumber,
+subjectKeyIdentifier   [0] SubjectKeyIdentifier,
+originatorKey          [1] OriginatorPublicKey,
+signerHash             [2] SignerHash
+}
+
+OriginatorPublicKey ::= SEQUENCE {
+algorithm  PublicKeyAlgorithmIdentifier,
+publicKey  BIT STRING
+}
+
+PublicKeyAlgorithmIdentifier ::=
+AlgorithmIdentifier {{PublicKeyAlgorithms}}
+
+PublicKeyAlgorithms ALGORITHM ::= {
+
+...  -- Expect additional objects --
+}
+
+RecipientEncryptedKeys ::= SEQUENCE SIZE(0..MAX) OF RecipientEncryptedKey
+
+RecipientEncryptedKey ::= SEQUENCE {
+rid           KeyAgreeRecipientIdentifier,
+encryptedKey  EncryptedKey
+}
+
+KeyAgreeRecipientIdentifier ::= CHOICE {
+issuerAndSerialNumber  IssuerAndSerialNumber,
+rKeyId                 [0] RecipientKeyIdentifier,
+rKeyIdHash             [1] RecipientKeyIdHash
+}
+
+RecipientKeyIdentifier ::= SEQUENCE {
+subjectKeyIdentifier  SubjectKeyIdentifier,
+date                  GeneralizedTime  OPTIONAL,
+other                 OtherKeyAttribute  OPTIONAL
+}
+
+RecipientKeyIdHash ::= SEQUENCE {
+signerHash  SignerHash,
+date      GeneralizedTime  OPTIONAL,
+other     OtherKeyAttribute  OPTIONAL
+}
+
+OtherKeyAttribute ::= SEQUENCE {
+keyAttrId  ATTRIBUTE.&id({OtherAttributes}),
+keyAttr    Values {{OtherAttributes}}  OPTIONAL
+}
+
+OtherAttributes ATTRIBUTE ::= {
+
+...  -- Expect additional attribute objects --
+}
+
+KEKRecipientInfo ::= SEQUENCE {
+version                 CMSVersion,
+kekid                   KEKIdentifier,
+keyEncryptionAlgorithm  KeyEncryptionAlgorithmIdentifier,
+encryptedKey            EncryptedKey
+}
+
+KEKIdentifier ::= SEQUENCE {
+kekIdentifier  OCTET STRING,
+date           GeneralizedTime  OPTIONAL,
+other          OtherKeyAttribute  OPTIONAL
+}
+
+PasswordRecipientInfo ::= SEQUENCE {
+version                 CMSVersion,
+keyDerivationAlgorithm  [0] KeyDerivationAlgorithmIdentifier  OPTIONAL,
+keyEncryptionAlgorithm  KeyEncryptionAlgorithmIdentifier,
+encryptedKey            EncryptedKey
+}
+
+KeyDerivationAlgorithmIdentifier ::=
+AlgorithmIdentifier {{KeyDerivationAlgorithms}}
+
+KeyDerivationAlgorithms ALGORITHM ::= {
+
+...  -- Expect additional objects --
+}
+
+KeyWrapEncryptionAlgorithmIdentifier ::=
+AlgorithmIdentifier {{KeyWrapEncryptionAlgorithms}}
+
+KeyWrapEncryptionAlgorithms ALGORITHM ::= {
+
+...  -- Expect additional objects --
+}
+KEY-MANAGEMENT ::= TYPE-IDENTIFIER  -- From ISO/IEC 8824-2, Annex A
+
+OtherRecipientInfo ::= SEQUENCE {
+oriType   KEY-MANAGEMENT.&id({Extensions}),
+oriValue  KEY-MANAGEMENT.&Type({Extensions}{@oriType})  OPTIONAL
+}
+
+Extensions KEY-MANAGEMENT ::= {
+Constructive-Key-Management    |
+DB-Encryption-Key-Management,
+
+...  -- Expect additional key management extensions --
+}
+
+DigestedData ::= SEQUENCE {
+version           CMSVersion,
+digestAlgorithm   DigestAlgorithmIdentifier,
+encapContentInfo  EncapsulatedContentInfo,
+digest            Digest
+}
+
+Digest ::= OCTET STRING
+
+EncryptedData ::= SEQUENCE {
+version               CMSVersion,
+encryptedContentInfo  EncryptedContentInfo,
+unprotectedAttrs      [1] UnprotectedAttributes OPTIONAL
+}
+
+NamedKeyEncryptedData ::= SEQUENCE {
+version               CMSVersion,
+keyName               [0] OCTET STRING  OPTIONAL,
+encryptedContentInfo  EncryptedContentInfo,
+unprotectedAttrs      [1] UnprotectedAttributes  OPTIONAL
+}
+
+AuthenticatedData ::= SEQUENCE {
+version           CMSVersion,
+originatorInfo    [0] OriginatorInfo  OPTIONAL,
+recipientInfos    RecipientInfos,
+macAlgorithm      MessageAuthenticationCodeAlgorithm,
+digestAlgorithm   [1] DigestAlgorithmIdentifier OPTIONAL,
+encapContentInfo  EncapsulatedContentInfo,
+authAttrs         [2] AuthAttributes OPTIONAL,
+mac               MessageAuthenticationCode,
+unauthAttrs       [3] UnauthAttributes  OPTIONAL
+}
+
+MessageAuthenticationCodeAlgorithm ::=
+AlgorithmIdentifier {{MACAlgorithms}}
+
+MACAlgorithms ALGORITHM ::= {
+
+...  -- Expect additional MAC or HMAC algorithm objects --
+}
+
+MessageAuthenticationCode ::= OCTET STRING
+
+AuthAttributes ::= SET SIZE(1..MAX) OF Attribute {{Authenticated}}
+
+Authenticated ATTRIBUTE ::={
+
+...  -- Expect additional authenticated attribute objects --
+}
+
+UnauthAttributes ::=
+SET SIZE(1..MAX) OF Attribute {{Unauthenticated}}
+
+Unauthenticated ATTRIBUTE ::=  {
+
+...  -- Expect additional unauthenticated attribute objects --
+}
+
+UserKeyingMaterial ::= OCTET STRING
+
+-- Supporting definitions --
+
+ATTRIBUTE ::= CLASS {
+&Type  OPTIONAL,
+&id    OBJECT IDENTIFIER  UNIQUE
+}
+WITH SYNTAX { [WITH SYNTAX &Type] ID &id }
+
+Attribute { ATTRIBUTE:IOSet } ::= SEQUENCE {
+attrType    ATTRIBUTE.&id({IOSet}),
+attrValues  Values {{IOSet}}
+}
+
+Values { ATTRIBUTE:IOSet } ::= SET SIZE(0..MAX) OF ATTRIBUTE.&Type({IOSet})
+
+ALGORITHM ::= CLASS {
+&id    OBJECT IDENTIFIER  UNIQUE,
+&Type  OPTIONAL
+}
+WITH SYNTAX { OID &id [ PARMS &Type ] }
+
+AlgorithmIdentifier { ALGORITHM:IOSet } ::= SEQUENCE {
+algorithm   ALGORITHM.&id({IOSet}),
+parameters  ALGORITHM.&Type({IOSet}{@algorithm})  OPTIONAL
+}
+
+END  -- CryptographicMessageSyntax --
+CKM schema specification
+
+ConstructiveKeyManagement {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) ckm(3) v2009(1) }
+
+DEFINITIONS EXPLICIT TAGS ::=  BEGIN
+
+-- EXPORTS All --
+
+IMPORTS
+
+-- X9.73 Cryptographic Message Syntax (CMS) --
+
+ALGORITHM, AlgorithmIdentifier{}, CMSVersion,
+ContentEncryptionAlgorithmIdentifier, DigestAlgorithmIdentifier, EncryptedKey,
+KeyEncryptionAlgorithmIdentifier, KEY-MANAGEMENT, UserKeyingMaterial
+FROM CryptographicMessageSyntax {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) cms(2) v2009(1) }
+
+-- X9.73 CMS Object Identifiers --
+
+id-ckm-recip-info, id-ckm-symmetric, id-ckm-key-transport,
+id-ckm-key-agree-multiple-encrypt, id-ckm-key-agree-hash
+FROM CMSObjectIdentifers {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) oids(1) v2009(1) }
+
+-- X9.73 Constructive Key Management Header --
+
+ckmRecipientInfo2
+FROM CKM-Header {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) ckmh(6) v2009(1) };
+
+
+Constructive-Key-Management KEY-MANAGEMENT ::= {
+ckmRecipientInfo   |
+ckmRecipientInfo2,
+
+...  -- Expect additional key management objects --
+}
+
+ckmRecipientInfo KEY-MANAGEMENT ::=
+{ KeyConstructRecipientInfo  IDENTIFIED BY id-ckm-recip-info }
+
+KeyConstructRecipientInfo ::= SEQUENCE {
+version                       CMSVersion,
+did                       [0] KeyConstructionDomain  OPTIONAL,
+ckmid                     [1] KeyConstructionRecipient,
+ukm                       [2] UserKeyingMaterial  OPTIONAL,
+keyConstructionAlgorithm  KeyConstructionAlgorithmIdentifier,
+encryptedKey              EncryptedKey
+}
+
+KeyConstructionDomain ::= SEQUENCE {
+domainName              DomainName,
+domainMaintenanceLevel  DomainMaintenanceLevel
+}
+
+DomainName ::= PrintableString
+
+DomainMaintenanceLevel ::= INTEGER
+
+KeyConstructionRecipient ::= OCTET STRING
+
+CKMRecipient ::= CHOICE {
+ckmLabels    [0] CKMLabels,
+encrypted    [1] EncryptedRecipientID,
+unencrypted  [2] CKMKeyConstructIdentifier
+}
+
+CKMLabels ::= SEQUENCE SIZE(1..MAX) OF CKMLabel
+
+CKMLabel ::= OCTET STRING
+
+EncryptedRecipientID ::= SEQUENCE {
+algorithm   [0] ContentEncryptionAlgorithmIdentifier  OPTIONAL,
+keyID       [1] OCTET STRING  OPTIONAL,
+ciphertext  OCTET STRING
+}
+
+CKMKeyConstructIdentifier ::= SEQUENCE {
+algorithm        [0] ContentEncryptionAlgorithmIdentifier OPTIONAL,
+ckmLabels        CKMLabels,
+encryptedRandom  OCTET STRING,
+ephemeralPublic  OCTET STRING
+}
+
+symmetricConstruction ALGORITHM ::=
+{ OID id-ckm-symmetric PARMS ConstructionAlgorithms }
+
+ConstructionAlgorithms ::= SEQUENCE {
+combiner                CombinerAlgorithmIdentifier,
+keyEncryptionAlgorithm  KeyEncryptionAlgorithmIdentifier }
+
+CombinerAlgorithmIdentifier ::= AlgorithmIdentifier { {CombinerAlgorithms} }
+
+CombinerAlgorithms ALGORITHM ::= {
+
+...  -- Expect additional combiner algorithm objects --
+}
+
+keyTransportConstruction ALGORITHM ::=
+{ OID id-ckm-key-transport  PARMS KeyEncryptionAlgorithmIdentifier }
+
+keyAgreeMultipleEncryptionConstruction ALGORITHM ::=
+{ OID id-ckm-key-agree-multiple-encrypt  PARMS KeyAgree1Algorithms }
+
+KeyAgree1Algorithms ::= SEQUENCE {
+keyAgreementAlgorithm   KeyAgreementAlgorithmIdentifier,
+keyEncryptionAlgorithm  KeyEncryptionAlgorithmIdentifier
+}
+
+keyAgreeHashConstruction ALGORITHM ::=
+{ OID id-ckm-key-agree-hash  PARMS KeyAgree2Algorithms }
+
+KeyAgree2Algorithms ::= SEQUENCE {
+keyAgreementAlgorithm   KeyAgreementAlgorithmIdentifier,
+keyEncryptionAlgorithm  KeyEncryptionAlgorithmIdentifier,
+hashAlgorithm           DigestAlgorithmIdentifier
+}
+
+KeyConstructionAlgorithmIdentifier ::=
+AlgorithmIdentifier {{KeyConstructionAlgorithms}}
+
+KeyConstructionAlgorithms ALGORITHM ::= {
+...  -- Expect additional key construction algorithm objects --
+}
+
+KeyAgreementAlgorithmIdentifier ::=
+AlgorithmIdentifier {{KeyAgreementAlgorithms}}
+
+KeyAgreementAlgorithms ALGORITHM ::= {
+
+...  -- Any approved key agreement algorithms --
+}
+
+END  -- ConstructiveKeyManagement --
+Key agreement schema specification
+CMSKeyAgreement {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) ka(4) v2009(1) }
+
+DEFINITIONS IMPLICIT TAGS ::=  BEGIN
+
+-- EXPORTS All --
+
+IMPORTS
+
+-- X9.73 Cryptographic Message Syntax (CMS) --
+
+KeyEncryptionAlgorithmIdentifier, OriginatorPublicKey,
+UserKeyingMaterial
+FROM CryptographicMessageSyntax {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) cms(2) v2009(1) };
+
+
+-- Type ECDSA-Sig-Value [defined in X9.62] is DER encoded --
+-- for use in the signature component of type SignerInfo  --
+-- in SignedData, even when SignedData is XER encoded.    --
+
+ECDSA-Sig-Value ::= SEQUENCE {
+r  INTEGER,
+s  INTEGER
+}
+
+ECPoint ::= OCTET STRING  -- EC public key --
+
+MQVuserKeyingMaterial ::= SEQUENCE {
+ephemeralPublicKey  OriginatorPublicKey,
+addedukm            [0] EXPLICIT UserKeyingMaterial  OPTIONAL
+}
+
+ECC-CMS-SharedInfo ::= SEQUENCE {
+keyInfo      KeyEncryptionAlgorithmIdentifier,
+entityUInfo  [0] EXPLICIT OCTET STRING  OPTIONAL,
+suppPubInfo  [2] EXPLICIT OCTET STRING
+}
+
+ECKeyCommitment ::= SEQUENCE {
+staticPublicKey     ECPoint,
+ephemeralPublicKey  ECPoint  OPTIONAL
+}
+
+END  -- CMSKeyAgreement --
+Password-based encryption schema specification
+
+PasswordBasedEncryption {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) pbe(5) v2009(1) }
+
+DEFINITIONS IMPLICIT TAGS ::= BEGIN
+
+-- EXPORTS All --
+
+IMPORTS
+
+-- X9.73 Cryptographic Message Syntax (CMS) --
+
+ALGORITHM, AlgorithmIdentifier {}, CMSVersion, EncryptedKey,
+KeyEncryptionAlgorithmIdentifier
+FROM CryptographicMessageSyntax {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) cms(2) v2009(1) }
+
+-- X9.73 CMS Object Identifiers --
+
+id-alg-PWRI-KEK
+FROM CMSObjectIdentifers {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) oids(1) v2009(1) };
+
+PasswordRecipientInfo ::= SEQUENCE {
+version                     CMSVersion,
+keyDerivationAlgorithm      [0] KeyDerivationAlgorithmIdentifier  OPTIONAL,
+keyWrapEncryptionAlgorithm  KeyWrapEncryptionAlgorithmIdentifier,
+encryptedKey                EncryptedKey
+}
+
+KeyDerivationAlgorithmIdentifier ::=
+AlgorithmIdentifier {{ KeyDerivationAlgorithms }}
+
+KeyDerivationAlgorithms ALGORITHM ::= {
+
+...  -- Expect additional objects --
+}
+
+KeyWrapEncryptionAlgorithmIdentifier ::=
+AlgorithmIdentifier {{ KeyWrapAlgorithms }}
+
+KeyWrapAlgorithms ALGORITHM ::= {
+{ OID id-alg-PWRI-KEK PARMS KeyEncryptionAlgorithmIdentifier },
+
+...  -- Expect additional objects --
+}
+
+END  -- PasswordBasedEncryption --
+CKM-Header schema specification
+CKM-Header {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) ckmh(6) v2009(1)
+}
+DEFINITIONS IMPLICIT TAGS ::= BEGIN
+
+-- EXPORTS All;
+
+IMPORTS
+
+-- ITU-T Rec. X.501 | ISO/IEC 9594-2 --
+
+Name
+FROM InformationFramework { joint-iso-itu-t ds(5) modules(1)
+informationFramework(1) 3 }
+
+-- X9.73 Cryptographic Message Syntax (CMS) --
+
+ALGORITHM, AlgorithmIdentifier{},IssuerAndSerialNumber,
+KEY-MANAGEMENT,SignatureAlgorithmIdentifier, SignatureValue
+FROM CryptographicMessageSyntax {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) cms(2) v2009(1) }
+
+-- X9.73 CMS Object Identifiers --
+
+ckm-CMS, id-Accessgrouplist, id-BitSpray, id-BitSprayMeta, id-BitSprayShares,
+id-ckm-header, id-ckm-recip-info2, id-Credentiallist, id-Domainlist,
+id-FavoriteName, id-Filehash, id-Filelength, id-Filename, id-Issuer, id-Ivec,
+id-KeyUsage, id-Secryptm, id-SignKey
+FROM CMSObjectIdentifers {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) oids(1) v2009(1) };
+
+
+
+ckmRecipientInfo2 KEY-MANAGEMENT ::= {
+EncryptionHeader3 IDENTIFIED BY id-ckm-recip-info2
+}
+
+EncryptionHeader3 ::= SEQUENCE {
+headerID               HeaderID,
+version                INTEGER,
+combinerVersion        INTEGER,
+whoCreated             EncryptionIdentifier,
+creationDate           GeneralizedTime,
+algorithm              EncryptionAlgorithm,
+compression            [0] Compression  OPTIONAL,
+padding                [1] Padding  DEFAULT noPadding,
+dataObjectIdentifier   [6] OCTET STRING OPTIONAL,
+protectedExtensions    [2] ExtensionSet  OPTIONAL,
+signatureAlgorithm     [3] SignatureAlgorithmIdentifier,
+signature              [4] SignatureValue,
+unprotectedExtensions  [5] ExtensionSet  OPTIONAL
+}
+
+EncryptionAlgorithm ::= CHOICE {
+algorithmNumber  INTEGER,
+algorithmId      AlgorithmIdentifier{{EncryptionAlgs}}
+}
+
+EncryptionAlgs ALGORITHM ::= {
+
+... -- Expect additional algorithms --
+}
+
+HeaderID ::= HEADER.&id({HeaderSet})  -- Unique header identifier --
+
+Compression ::= INTEGER { none(0), gzip(1) }
+
+Padding ::= INTEGER { noPadding(0), pkcs5(1) }
+
+ExtensionSet ::= SEQUENCE SIZE(1..MAX) OF Extension
+
+EncryptionIdentifier ::= CHOICE {
+issuerAndSerialNumber  IssuerAndSerialNumber,
+subjectIdentifier      [0] SubjectIdentifier,
+subjectGuid            [1] GUID
+}
+
+SubjectIdentifier ::= OCTET STRING
+
+GUID ::= OCTET STRING (SIZE(16))  -- Globally Unique Identifier --
+
+-- Information object specifications --
+
+HEADER ::= CLASS {
+&id    OBJECT IDENTIFIER  UNIQUE
+}
+WITH SYNTAX { ID &id }
+
+HeaderSet HEADER ::= {
+
+{ ID  id-ckm-header },
+
+...  -- Expect additional header types --
+}
+
+EXTENSION::= CLASS {
+&id       OBJECT IDENTIFIER  UNIQUE,
+&ExtnType
+}
+WITH SYNTAX {
+&ExtnType IDENTIFIED BY &id
+}
+
+Extension ::= SEQUENCE {
+extnId     EXTENSION.&id({Extensions}),
+critical   BOOLEAN DEFAULT FALSE,
+extnValue  OCTET STRING (
+CONTAINING EXTENSION.&ExtnType({Extensions}{@extnId}) ENCODED BY der)
+}
+
+iVECExtension EXTENSION ::= {
+Ivec IDENTIFIED BY id-Ivec
+}
+
+Ivec ::= OCTET STRING
+
+secryptMExtension EXTENSION ::= {
+SecryptMPadding IDENTIFIED BY id-Secryptm
+}
+
+SecryptMPadding ::= OCTET STRING
+
+fileLengthExtension EXTENSION ::= {
+FileLength IDENTIFIED BY id-Filelength
+}
+
+FileLength ::= INTEGER
+
+fileHashExtension EXTENSION ::= {
+HASH-WITH-ALGORITHM IDENTIFIED BY id-Filehash
+}
+
+fileNameExtension EXTENSION ::= {
+FileName IDENTIFIED BY id-Filename
+}
+
+FileName ::= VisibleString
+
+domainListExtension EXTENSION ::= {
+CkmDomainset IDENTIFIED BY id-Domainlist
+}
+
+accessGroupListExtension EXTENSION ::= {
+CkmAccessGroupset IDENTIFIED BY id-Accessgrouplist
+}
+
+issuerExtension EXTENSION ::= {
+GUID IDENTIFIED BY id-Issuer
+}
+
+credentialListExtension EXTENSION ::= {
+ExplicitCkmCredentialset IDENTIFIED BY id-Credentiallist
+}
+
+headerPublicKeyExtension EXTENSION ::= {
+PublicKey IDENTIFIED BY id-SignKey
+}
+
+PublicKey ::= OCTET STRING
+
+headerKeyUsageExtension EXTENSION ::= {
+KeyUsageDefinition IDENTIFIED BY id-KeyUsage
+}
+
+KeyUsageDefinition ::= SEQUENCE {
+keyUsageOid  OBJECT IDENTIFIER,
+keyBitSize   INTEGER
+}
+
+--                    --
+-- Extensions support --
+--                    --
+
+HASH-WITH-ALGORITHM ::= SEQUENCE {
+hashAlgorithm  AlgorithmIdentifier{{SupportedAlgorithms}},
+hash           OCTET STRING
+}
+
+CkmAccessGroupset ::= SEQUENCE SIZE(1..MAX) OF CkmAccessGroup
+
+ExplicitCkmCredentialset ::= SEQUENCE {
+credentialList  CkmCredentialset
+}
+
+CkmCredentialset ::= SEQUENCE SIZE(1..MAX) OF CkmCredential
+
+CkmCredential ::= SEQUENCE {
+credentialID         GUID,
+credentialVersion    INTEGER,
+domainNumber         INTEGER,  -- Zero based offset in CkmDomainset --
+credentialSignature     OCTET STRING OPTIONAL
+}
+
+CkmDomainset ::= SEQUENCE SIZE(1..MAX) OF CkmDomain
+
+CkmDomain ::= SEQUENCE {
+domainId                 GUID,
+currentMaintenanceLevel  INTEGER,
+ephemeralPublic          [0] OCTET STRING  OPTIONAL
+}
+
+CkmAccessGroup ::= CHOICE {
+fullCert        [0] CkmFullCertGroup,
+partialCert     [1] CkmPartialCertGroup,
+pin             [2] CkmPinGroup,
+creds           [3] CkmCredGroup,
+externalCrypto  [4] CkmExternalGroup
+}
+
+CkmFullCertGroup ::= SEQUENCE {
+certificate     OCTET STRING,
+protectedValue  OCTET STRING
+}
+
+CkmPartialCertGroup ::= SEQUENCE {
+keyId           OCTET STRING,
+subject         OCTET STRING,
+protectedValue  OCTET STRING
+}
+
+CkmExternalGroup ::= SEQUENCE {
+oid            OBJECT IDENTIFIER,  -- Describes external crypto system --
+parameters     OCTET STRING,
+protectedValue  OCTET STRING OPTIONAL
+}
+
+CkmPinGroup ::= SEQUENCE {
+salt           OCTET STRING,
+hmac           OCTET STRING (SIZE(20..64)),  -- PBE PBKDF2 function result --
+iterations     INTEGER,
+keySize        INTEGER,
+desc           [0] IMPLICIT PrintableString OPTIONAL,
+protectedValue  OCTET STRING  OPTIONAL
+}
+
+CkmCredGroup ::= SEQUENCE {
+creds            CredentialIndexSet,
+encryptedRandom  OCTET STRING
+}
+
+CredentialIndexSet ::=
+SEQUENCE SIZE(1..MAX) OF INTEGER  -- Integer is the zero based offset --
+-- in the CkmCredentialset          --
+
+Extensions EXTENSION ::= {
+iVECExtension             |
+secryptMExtension         |
+fileLengthExtension       |
+fileHashExtension         |
+fileNameExtension         |
+domainListExtension       |
+accessGroupListExtension  |
+issuerExtension           |
+credentialListExtension   |
+headerPublicKeyExtension  |
+headerKeyUsageExtension,
+
+...  -- Expect additional extension objects --
+}
+
+der OBJECT IDENTIFIER ::= {
+joint-iso-itu-t asn1(1) ber-derived(2) distinguished-encoding(1) }
+
+SupportedAlgorithms ALGORITHM ::= {
+
+...  -- Expect additional algorithms --
+}
+
+END  -- CKM-Header --
+TokenizationManifest specification
+TokenizationManifest {
+iso(1) identified-organization(3) tc68(133) country(16)
+x9(840) x9Standards(9) x9-73(73) module(0) tokeMan(7) }
+
+DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- EXPORTS All --
+
+IMPORTS
+
+-- X9.73 Cryptographic Message Syntax (CMS) --
+
+ATTRIBUTE
+FROM CryptographicMessageSyntax {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) cms(2) v2009(1) }
+
+-- X9.73 CMS Object Identifiers --
+
+id-tokenizedParts, id-XPathTokensSet
+FROM CMSObjectIdentifers {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) oids(1) v2009(1) };
+
+
+TokenizedParts ::= Tokenized {{ Manifest }}
+
+Manifest TOKENIZED ::= {
+xPathTokensManifest,
+
+...  -- Expect additional manifest objects --
+}
+
+xPathTokensManifest TOKENIZED ::= {
+OID id-XPathTokensSet PARMS XPathTokensSet
+}
+
+XPathTokensSet ::= SEQUENCE {
+tSP       TokenServiceProvider OPTIONAL,
+xPathSet  XPathSet
+}
+
+TokenServiceProvider ::= URI
+
+URI ::= UTF8String (SIZE(1..MAX))
+
+XPathSet ::= SEQUENCE SIZE(1..MAX) OF XPath
+
+XPath ::= UTF8String (CONSTRAINED BY { -- XML Path Language 2.0 -- })
+
+tokenizedParts ATTRIBUTE ::= {
+WITH SYNTAX TokenizedParts ID id-tokenizedParts
+}
+
+TOKENIZED ::= CLASS {
+&id OBJECT IDENTIFIER UNIQUE,
+&Type OPTIONAL
+}
+WITH SYNTAX { OID &id [ PARMS &Type ] }
+
+Tokenized { TOKENIZED:IOSet } ::= SEQUENCE {
+name  TOKENIZED.&id({IOSet}),
+parts TOKENIZED.&Type({IOSet}{@name}) OPTIONAL
+}
+
+END  -- TokenizationManifest --
+
+
+Signcryption
+CMS-Signcryption {
+iso(1) identified-organization(3) tc68(133) country(16)
+x9(840) x9Standards(9) x9-73(73) module(0) signcrypt(8) }
+
+DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- EXPORTS All --
+
+IMPORTS
+
+-- ISO/IEC 29150 Signcryption --
+
+SigncryptionMechanism
+FROM Signcryption {
+iso(1) standard(0) signcryption(29150)
+asn1-module(0) signcryption-mechanisms(0) version(1) }
+
+-- X9.73 Cryptographic Message Syntax (CMS) --
+
+AlgorithmIdentifier {}, ALGORITHM, ATTRIBUTE, Attribute {},
+Certificates, CRLs, Signed, NamedKeyEncryptedData,
+SignatureAlgorithmIdentifier, SignatureValue, SignedAttributes,
+SignerIdentifier
+FROM CryptographicMessageSyntax {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) cms(2) v2009(1) }
+
+-- X9.73 CMS Object Identifiers --
+
+signcrypted-attributes, signcrypted-components, signcrypted-content,
+signcrypted-envelope, xPath
+FROM CMSObjectIdentifers {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) oids(1) v2009(1) };
+
+
+-- X9.73 XML namepace: urn:oid:1.3.133.16.840.9.73 --
+
+
+SigncryptedData ::= SEQUENCE {
+version             Version,
+contentInformation  ContentInformation,
+certificates        Certificates  OPTIONAL,
+crls                CRLs  OPTIONAL,
+signcrypters        Signcrypters
+}
+
+Version ::= INTEGER(1..MAX)
+
+ContentInformation ::= SEQUENCE {
+mode     Mode,
+content  Content  OPTIONAL
+}
+
+Mode ::= MODE.&id({ProcessingModes})
+
+ProcessingModes MODE ::= {
+signcryptedAttributes  |
+signcryptedComponents  |
+signcryptedContent     |
+signcryptedEnveloped,
+
+...  -- Expect additional processing modes --
+}
+
+Content ::= OCTET STRING (SIZE(1..MAX))
+
+Signcrypters ::= SEQUENCE SIZE(1..MAX) OF Signcrypter
+
+Signcrypter    ::= SEQUENCE {
+version                   Version,
+sids                      SigncrypterIDs,
+signcryptedDataAlgorithm  SigncryptedDataAlgorithmIdentifier,
+signcryptionValue         SigncryptionValue,
+signatureInformation      SignatureInformation  OPTIONAL,
+unsigncryptedAttributes   UnSigncryptedAttributes  OPTIONAL
+}
+
+SigncrypterIDs ::= SEQUENCE {
+sender     KeyPairIdentifier,
+recipient  KeyPairIdentifier
+}
+
+KeyPairIdentifier ::= SignerIdentifier
+
+ToBeSigncrypted ::= SEQUENCE {
+content     Content,
+attributes  SigncryptedAttributes
+}
+
+SigncryptedAttributes ::=
+SEQUENCE SIZE(1..MAX) OF Attribute {{SigncryptionAttributes}}
+
+SigncryptionAttributes ATTRIBUTE ::= {
+Signed               |  -- CMS Signed Attributes --
+signcryptedEnvelope,
+
+...  -- Expect user defined attributes --
+}
+
+signcryptedEnvelope ATTRIBUTE ::= {
+WITH SYNTAX SigncryptedKey ID signcrypted-envelope
+}
+
+SigncryptedKey ::= OCTET STRING
+
+SigncryptedDataAlgorithmIdentifier ::=
+AlgorithmIdentifier {{SigncryptAlgorithms}}
+
+SigncryptAlgorithms ALGORITHM ::= {
+SigncryptionMechanism,  -- ISO/IEC 29150 Signcryption --
+
+...  -- Expect additional algorithm objects --
+}
+
+SigncryptionValue ::= OCTET STRING (SIZE(1..MAX))
+
+SignatureInformation ::= SEQUENCE {
+signerIdentifier    SignerIdentifier  OPTIONAL,
+signatureAlgorithm  SignatureAlgorithmIdentifier  OPTIONAL,
+toBeSigned          ToBeSigned,
+signatureValue      SignatureValue
+}
+
+ToBeSigned ::= SEQUENCE {
+signcryptedPartsManifest  SigncryptedPartsManifest,
+signedAttributes          SignedAttributes
+}
+
+SigncryptedPartsManifest ::= Signcrypted{{Manifest}}
+
+Manifest SIGNCRYPTED ::= {
+xPathManifest,
+
+...  -- Expect additional manifest types --
+}
+
+xPathManifest SIGNCRYPTED ::= {
+OID xPath  PARMS XPathSet
+}
+
+XPathSet ::= SEQUENCE SIZE(1..MAX) OF XPath
+
+XPath ::= UTF8String (CONSTRAINED BY { -- XML Path Language 2.0 -- })
+
+UnSigncryptedAttributes ::=
+SEQUENCE SIZE(1..MAX) OF Attribute {{UnSigncryptionAttributes}}
+
+UnSigncryptionAttributes ATTRIBUTE ::= {
+
+...  -- Expect additional attributes --
+}
+
+-- SigncryptedData processing modes --
+
+signcryptedAttributes MODE ::= { ID signcrypted-attributes }
+
+signcryptedComponents MODE ::= { ID signcrypted-components }
+
+signcryptedContent MODE ::= { ID signcrypted-content }
+
+signcryptedEnveloped MODE ::={ ID signcrypted-envelope }
+
+-- Information object class and parameterized type definitions --
+
+SIGNCRYPTED ::= CLASS {
+&id    OBJECT IDENTIFIER UNIQUE,
+&Type  OPTIONAL
+}
+WITH SYNTAX { OID &id [PARMS &Type] }
+
+Signcrypted{SIGNCRYPTED:IOSet} ::= SEQUENCE {
+name   SIGNCRYPTED.&id({IOSet}),
+parts  SIGNCRYPTED.&Type({IOSet}{@name})  OPTIONAL
+}
+
+MODE ::= CLASS {
+&Type  OPTIONAL,
+&id    OBJECT IDENTIFIER  UNIQUE
+}
+WITH SYNTAX { [WITH SYNTAX &Type] ID &id }
+
+END  -- CMS-Signcryption  --
+Database Encryption Key Management
+DbEKM {
+iso(1) identified-organization(3) tc68(133) country(16)
+x9(840) x9Standards(9) x9-73(73) module(0) dbekm(9) }
+
+DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- EXPORTS All --
+
+IMPORTS
+
+-- X9.73 Cryptographic Message Syntax (CMS) --
+
+AlgorithmIdentifier {}, ALGORITHM, ATTRIBUTE, Attribute {},
+KEY-MANAGEMENT, MessageAuthenticationCodeAlgorithm
+FROM CryptographicMessageSyntax {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) cms(2) v2009(1) }
+
+-- X9.73 CMS Object Identifiers --
+
+id-dbekm-recip-info, id-SimpleString, id-UniqueIdentifier
+FROM CMSObjectIdentifers {
+iso(1) identified-organization(3) tc68(133) country(16) x9(840)
+x9Standards(9) x9-73(73) module(0) oids(1) v2009(1) };
+
+-- X9.73 XML namepace: urn:oid:1.3.133.16.840.9.73 --
+
+
+DB-Encryption-Key-Management KEY-MANAGEMENT ::= {
+dbekmRecipientInfo,
+
+...  -- Expect additional key management objects --
+}
+
+dbekmRecipientInfo KEY-MANAGEMENT ::=
+
+{ DBEKMRecipientInfo  IDENTIFIED BY id-dbekm-recip-info }
+
+DBEKMRecipientInfo ::= CHOICE {
+keyManager  MasterKeyEncryptedHMACkey,
+server      DatabaseServerToKeyManager
+}
+
+MasterKeyEncryptedHMACkey ::= SEQUENCE {
+masterKeyAID  MasterKeyAlgorithmIdentifier  OPTIONAL,
+hmacKeyAID    MessageAuthenticationCodeAlgorithm  OPTIONAL,
+encryptedKey  OCTET STRING (SIZE(1..MAX))
+}
+
+MasterKeyAlgorithmIdentifier ::=
+AlgorithmIdentifier {{MasterKeyAlgorithms}}
+
+MasterKeyAlgorithms ALGORITHM ::= {
+
+...  -- Expect additional algorithm objects --
+}
+
+DatabaseServerToKeyManager ::= SEQUENCE {
+encryptedKey  MasterKeyEncryptedHMACkey,
+uniqueID      UniqueIdentifier  OPTIONAL  -- May be known system wide --
+}
+
+UniqueIdentifier ::= UniqueID {{ SchemaIdentifier }}
+
+SchemaIdentifier DBEKM ::= {
+simpleString,
+
+...  -- Expect additional schema identifier objects --
+}
+
+simpleString DBEKM ::= {
+OID id-SimpleString PARMS SimpleString
+}
+
+SimpleString ::= UTF8String (SIZE(1..MAX))
+
+DBEKM ::= CLASS {
+&id OBJECT IDENTIFIER UNIQUE,
+&Type OPTIONAL
+}
+WITH SYNTAX { OID &id [ PARMS &Type ] }
+
+UniqueID { DBEKM:IOSet } ::= SEQUENCE {
+name  DBEKM.&id({IOSet}),
+type  DBEKM.&Type({IOSet}{@name}) OPTIONAL
+}
+
+DbEKMAttributeSet ::=
+SEQUENCE SIZE(1..MAX) OF Attribute {{ DbEKMAttributes }}
+
+DbEKMAttributes ATTRIBUTE ::= {
+uniqueIdentifier,
+
+...  -- Expect user schema identifier attributes  --
+}
+
+uniqueIdentifier ATTRIBUTE ::= {
+WITH SYNTAX UniqueIdentifier ID id-UniqueIdentifier
+}
+
+END  -- DbEKM --
+
+
