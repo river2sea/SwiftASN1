@@ -135,6 +135,7 @@ public class SecurityGuard {
 
     private var subjectPublicKeyInfo: Data?
 
+    
     public init() {}
 
     /**
